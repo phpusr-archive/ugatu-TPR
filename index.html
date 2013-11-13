@@ -16,22 +16,17 @@
 	<table border="1" cellspacing="0">
 		<tr ng-repeat="row in table">
 			<td ng-repeat="c in row">
-                <input type="text" size="5" ng-model="c.val" ng-change="changeTable()" />
+                <span ng-show="c.title" ng-bind="c.val"></span>
+                <input type="text" size="5" ng-hide="c.title" ng-model="c.val" ng-change="changeTable()" />
 			</td>
 		</tr>
 	</table>
 
-    <div>Sum: {{sum}}</div>
-
     <table>
-        <tr>
-            <td ng-repeat="s in sums track by $index">{{s}}</td>
+        <tr ng-repeat="s in sums track by $index">
+            <td>{{s}}</td>
         </tr>
     </table>
-
-    <div ng-init="test = '<strong>t</strong>est'"></div>
-    <input ng-model="test" />
-    <div ng-bind-html="test"></div>
 
 </body>
 </html>
