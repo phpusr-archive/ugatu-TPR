@@ -14,8 +14,8 @@
 
 	<h3>{{title}}</h3>
 
-	<label>Rows: <input type="number" ng-model="rows" ng-change="changeParams()" /></label><br/>
-	<label>Columns: <input type="number" ng-model="columns" ng-change="changeParams()" /></label>
+	<label>Кол-во стратегий решения: <input type="number" ng-model="rows" ng-change="changeParams()" /></label><br/>
+	<label>Кол-во состояний природы: <input type="number" ng-model="columns" ng-change="changeParams()" /></label>
 
 	<table border="1" cellspacing="0">
 		<tr ng-repeat="row in table">
