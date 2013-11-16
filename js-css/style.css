@@ -1,3 +1,23 @@
-input[type=number] {
+div.content {
+    margin-left: 20px;
+}
+
+#labels input[type=number] {
     width: 50px;
+    height: 30px;
+}
+
+#table table {
+    width: auto;
+}
+
+#table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+input.min-size {
+    width: 80px;
+    height: 30px;
+    text-align: center;
 }

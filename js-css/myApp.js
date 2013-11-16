@@ -1,6 +1,7 @@
 var app = angular.module('myApp', ['ngSanitize']);
 app.controller('MyCtrl', function MyCtrl($scope) {
-    $scope.title = 'ТПР Лаба 2';
+    $scope.subject = 'ТПР';
+    $scope.lab = 'Лаба 2';
     var rows = 0, columns = 0;
 
     $scope.changeParams = function() {
