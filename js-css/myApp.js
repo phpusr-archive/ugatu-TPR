@@ -31,6 +31,9 @@ app.controller('MyCtrl', function MyCtrl($scope) {
                     $scope.table[i][j] = new Data(0, false);
                 }
             }
+
+            //Изменение таблицы с результатами
+            $scope.changeTable();
         }
     };
 
@@ -56,7 +59,6 @@ app.controller('MyCtrl', function MyCtrl($scope) {
     $scope.rows = 4;
     $scope.columns = 4;
     $scope.changeParams();
-    $scope.changeTable();
 });
 /** Структура для хранения данных ячейки */
 function Data(val, title) {
