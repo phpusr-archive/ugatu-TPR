@@ -1,6 +1,7 @@
 var app = angular.module('myApp', ['ngSanitize']);
 app.controller('MyCtrl', function MyCtrl($scope) {
     $scope.title = 'ТПР Лаба 2';
+    var rows = 0, columns = 0;
 
     $scope.changeParams = function() {
 
@@ -9,24 +10,24 @@ app.controller('MyCtrl', function MyCtrl($scope) {
             $scope.p = 1/$scope.rows;
 
             //Заголовки
-            $scope.rows++;
-            $scope.columns++;
+            rows = $scope.rows+1;
+            columns = $scope.columns+1;
 
             //Заполнение заголовков
             $scope.table = [];
             $scope.table[0] = [];
             $scope.table[0][0] = new Data('X', true);
-            for (var j=1; j<$scope.columns; j++) {
+            for (var j=1; j<columns; j++) {
                 $scope.table[0][j] = new Data('Param '+j, true);
             }
-            for (i=1; i<$scope.rows; i++) {
+            for (i=1; i<rows; i++) {
                 $scope.table[i] = [];
                 $scope.table[i][0] = new Data(i, true);
             }
 
             //Заполнение нулями
-            for (var i=1; i<$scope.rows; i++) {
-                for (j=1; j<$scope.columns; j++) {
+            for (var i=1; i<rows; i++) {
+                for (j=1; j<columns; j++) {
                     $scope.table[i][j] = new Data(0, false);
                 }
             }
@@ -38,14 +39,14 @@ app.controller('MyCtrl', function MyCtrl($scope) {
 
         $scope.sums = [];
 
-        for (var i=1; i<$scope.rows; i++) {
+        for (var i=1; i<rows; i++) {
             var rowSum = 0;
             $scope.sums[i] = '(';
-            for (var j=1; j<$scope.columns; j++) {
+            for (var j=1; j<columns; j++) {
                 var val = parseInt($scope.table[i][j].val);
                 rowSum += val;
                 $scope.sums[i] += val;
-                if (j < $scope.columns-1) $scope.sums[i] += ' + '
+                if (j < columns-1) $scope.sums[i] += ' + '
             }
             $scope.sums[i] += ') * ' + $scope.p + ' = ' + rowSum*$scope.p;
         }
