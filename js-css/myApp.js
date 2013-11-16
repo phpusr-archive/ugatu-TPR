@@ -41,6 +41,8 @@ app.controller('MyCtrl', function MyCtrl($scope) {
         //console.log('table', $scope.table);
 
         $scope.sums = [];
+        $scope.maxRow = 0;
+        $scope.maxSum = 0;
 
         for (var i=1; i<rows; i++) {
             var rowSum = 0;
@@ -51,7 +53,12 @@ app.controller('MyCtrl', function MyCtrl($scope) {
                 $scope.sums[i-1] += val;
                 if (j < columns-1) $scope.sums[i-1] += ' + '
             }
-            $scope.sums[i-1] += ') * ' + $scope.p + ' = ' + rowSum*$scope.p;
+            rowSum *= $scope.p;
+            if (rowSum > $scope.maxSum) {
+                $scope.maxSum = rowSum;
+                $scope.maxRow = i;
+            }
+            $scope.sums[i-1] += ') * ' + $scope.p + ' = ' + rowSum;
         }
     };
 

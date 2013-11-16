@@ -32,11 +32,13 @@
         <table border="1" cellspacing="0">
             <tr ng-repeat="row in table">
                 <td ng-repeat="c in row">
-                    <span ng-show="c.title" ng-bind="c.val"></span>
+                    <b><span ng-show="c.title" ng-bind="c.val"></span></b>
                     <input type="text" size="5" ng-hide="c.title" ng-model="c.val" ng-change="changeTable()" />
                 </td>
             </tr>
         </table>
+
+        <p><button ng-click="stdFill()">Сбросить</button></p>
     </div>
 
     <h2>Результаты</h2>
@@ -44,9 +46,11 @@
     <div id="result">
         <table>
             <tr ng-repeat="s in sums track by $index">
-                <td>{{$index+1}}. {{s}}</td>
+                <td>W{{$index+1}} = {{s}}</td>
             </tr>
         </table>
+
+        <p class="best">Лучшее решение: {{maxRow}} ({{maxSum}})</p>
     </div>
 
 </body>
