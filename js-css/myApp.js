@@ -7,7 +7,7 @@ app.controller('MyCtrl', function MyCtrl($scope) {
 
         if ($scope.rows != null && $scope.columns != null) {
             //Вероятность (события равновероятны)
-            $scope.p = 1/$scope.rows;
+            $scope.p = (1/$scope.rows).toFixed(3);
 
             //Заголовки
             rows = $scope.rows+1;
