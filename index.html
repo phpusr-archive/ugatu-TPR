@@ -43,8 +43,8 @@
 
     <hr/>
 
-    <div class="row-fluid">
-        <div id="table" class="span8">
+    <div class="row">
+        <div id="table" class="span">
             <table class="table table-striped table-hover table-bordered">
                 <tr ng-repeat="row in table">
                     <td ng-repeat="c in row">
@@ -58,7 +58,7 @@
         </div>
 
 
-        <div id="result" class="span4">
+        <div id="result" class="span">
             <h2>Результаты</h2>
             <table>
                 <tr ng-repeat="s in sums track by $index">
