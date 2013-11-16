@@ -41,14 +41,14 @@ app.controller('MyCtrl', function MyCtrl($scope) {
 
         for (var i=1; i<rows; i++) {
             var rowSum = 0;
-            $scope.sums[i] = '(';
+            $scope.sums[i-1] = '(';
             for (var j=1; j<columns; j++) {
                 var val = parseInt($scope.table[i][j].val);
                 rowSum += val;
-                $scope.sums[i] += val;
-                if (j < columns-1) $scope.sums[i] += ' + '
+                $scope.sums[i-1] += val;
+                if (j < columns-1) $scope.sums[i-1] += ' + '
             }
-            $scope.sums[i] += ') * ' + $scope.p + ' = ' + rowSum*$scope.p;
+            $scope.sums[i-1] += ') * ' + $scope.p + ' = ' + rowSum*$scope.p;
         }
     };
 

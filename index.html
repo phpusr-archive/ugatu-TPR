@@ -12,25 +12,42 @@
 </head>
 <body>
 
-	<h3>{{title}}</h3>
+	<h1>{{title}}</h1>
 
-	<label>Кол-во стратегий решения: <input type="number" ng-model="rows" ng-change="changeParams()" /></label><br/>
-	<label>Кол-во состояний природы: <input type="number" ng-model="columns" ng-change="changeParams()" /></label>
+    <div id="labels">
+        <p>
+            <label for="rows">Кол-во стратегий решения: </label>
+            <input id="rows" type="number" ng-model="rows" ng-change="changeParams()" />
+        </p>
+        <p>
+            <label for="columns">Кол-во состояний природы: </label>
+            <input id="columns" type="number" ng-model="columns" ng-change="changeParams()" />
+        </p>
+        <p>
+            <label>Вероятность (события равновероятны): </label>{{p}}
+        </p>
+    </div>
 
-	<table border="1" cellspacing="0">
-		<tr ng-repeat="row in table">
-			<td ng-repeat="c in row">
-                <span ng-show="c.title" ng-bind="c.val"></span>
-                <input type="text" size="5" ng-hide="c.title" ng-model="c.val" ng-change="changeTable()" />
-			</td>
-		</tr>
-	</table>
+    <div id="table">
+        <table border="1" cellspacing="0">
+            <tr ng-repeat="row in table">
+                <td ng-repeat="c in row">
+                    <span ng-show="c.title" ng-bind="c.val"></span>
+                    <input type="text" size="5" ng-hide="c.title" ng-model="c.val" ng-change="changeTable()" />
+                </td>
+            </tr>
+        </table>
+    </div>
 
-    <table>
-        <tr ng-repeat="s in sums track by $index">
-            <td>{{s}}</td>
-        </tr>
-    </table>
+    <h2>Результаты</h2>
+
+    <div id="result">
+        <table>
+            <tr ng-repeat="s in sums track by $index">
+                <td>{{$index+1}}. {{s}}</td>
+            </tr>
+        </table>
+    </div>
 
 </body>
 </html>
