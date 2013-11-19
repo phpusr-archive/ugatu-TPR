@@ -69,7 +69,7 @@ app.controller('MyCtrl', function MyCtrl($scope) {
         rt[0][columns] = new Data('MAX', true)
         var minRow = 1;
         for (i=1; i<rows; i++) {
-            max = rt[i][0];
+            max = rt[i][1];
             for (j=1; j<columns; j++) {
                 if (rt[i][j].val > max.val) max = rt[i][j];
             }
