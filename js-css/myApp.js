@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var app = angular.module('myApp', ['ngSanitize']);
 app.controller('MyCtrl', function MyCtrl($scope) {
@@ -6,6 +6,7 @@ app.controller('MyCtrl', function MyCtrl($scope) {
     $scope.lab = 'Лаба 2 (Критерий Сэвиджа)';
     var rows = 0, columns = 0;
 
+    /** Срабатывает при изменении строк и столбцов */
     $scope.changeParams = function() {
 
         if ($scope.rows != null && $scope.columns != null) {
@@ -37,6 +38,7 @@ app.controller('MyCtrl', function MyCtrl($scope) {
         }
     };
 
+    /** Срабатывает при изменении значений в таблице */
     $scope.changeTable = function() {
 
         //Копирование массива
@@ -76,6 +78,7 @@ app.controller('MyCtrl', function MyCtrl($scope) {
             if (max.val < rt[minRow][columns].val) minRow = i;
         }
 
+        //Отображение результатов на форме
         $scope.resTable = rt;
         $scope.minRow = minRow;
         $scope.minMax = rt[minRow][columns].val;
@@ -108,6 +111,7 @@ app.controller('MyCtrl', function MyCtrl($scope) {
     //Начальная инициализация
     $scope.stdFill();
 });
+
 /** Структура для хранения данных ячейки */
 function Data(val, title) {
     this.val = val;
