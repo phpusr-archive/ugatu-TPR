@@ -7,9 +7,6 @@ app.controller('MyCtrl', function MyCtrl($scope) {
     $scope.changeParams = function() {
 
         if ($scope.rows != null && $scope.columns != null) {
-            //Вероятность (события равновероятны)
-            $scope.p = (1/$scope.rows).toFixed(3);
-
             //Заголовки
             rows = $scope.rows+1;
             columns = $scope.columns+1;
@@ -49,9 +46,18 @@ app.controller('MyCtrl', function MyCtrl($scope) {
             }
         }
 
-        //Поиск макс. по столбцам
-        for (i=1; i<rows; i++) {
-            //TODO
+        for (j=1; j<columns; j++) {
+            //Поиск макс. по столбцам
+            var maxRow = 1;
+            for (i=1; i<rows; i++) {
+                if ($scope.resTable[i][j].val > $scope.resTable[maxRow][j].val) maxRow = i;
+            }
+
+            //Вычитание из max значение столбца
+            var max = $scope.resTable[maxRow][j].val;
+            for (i=1; i<rows; i++) {
+                $scope.resTable[i][j].val = max - $scope.resTable[i][j].val;
+            }
         }
     };
 
