@@ -1,7 +1,7 @@
 var app = angular.module('myApp', ['ngSanitize']);
 app.controller('MyCtrl', function MyCtrl($scope) {
     $scope.subject = 'ТПР';
-    $scope.lab = 'Лаба 2';
+    $scope.lab = 'Лаба 2 (Критерий Сэвиджа)';
     var rows = 0, columns = 0;
 
     $scope.changeParams = function() {
@@ -39,27 +39,19 @@ app.controller('MyCtrl', function MyCtrl($scope) {
     };
 
     $scope.changeTable = function() {
-        //console.log('table', $scope.table);
 
-        $scope.sums = [];
-        $scope.maxRow = 0;
-        $scope.maxSum = 0;
+        //Копирование массива
+        $scope.resTable = [];
+        for (var i=0; i<rows; i++) {
+            $scope.resTable[i] = [];
+            for (var j=0; j<columns; j++) {
+                $scope.resTable[i][j] = new Data($scope.table[i][j].val, $scope.table[i][j].title);
+            }
+        }
 
-        for (var i=1; i<rows; i++) {
-            var rowSum = 0;
-            $scope.sums[i-1] = '(';
-            for (var j=1; j<columns; j++) {
-                var val = parseInt($scope.table[i][j].val);
-                rowSum += val;
-                $scope.sums[i-1] += val;
-                if (j < columns-1) $scope.sums[i-1] += ' + '
-            }
-            rowSum *= $scope.p;
-            if (rowSum > $scope.maxSum) {
-                $scope.maxSum = rowSum;
-                $scope.maxRow = i;
-            }
-            $scope.sums[i-1] += ') * ' + $scope.p + ' = ' + rowSum;
+        //Поиск макс. по столбцам
+        for (i=1; i<rows; i++) {
+            //TODO
         }
     };
 

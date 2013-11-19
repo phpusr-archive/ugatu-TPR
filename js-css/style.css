@@ -7,11 +7,11 @@ div.content {
     height: 30px;
 }
 
-#table table {
+div.my-table table {
     width: auto;
 }
 
-#table td {
+div.my-table td {
     text-align: center;
     vertical-align: middle;
 }
