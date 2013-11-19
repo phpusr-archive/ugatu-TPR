@@ -53,15 +53,15 @@
     <div class="my-table">
         <h2>Результаты</h2>
         <table class="table table-striped table-hover table-bordered">
-            <tr ng-repeat="row in resTable" ng-class="$index == maxRow ? 'success' : ''">
-                <td ng-repeat="c in row" >
+            <tr ng-repeat="row in resTable" ng-class="$index == minRow ? 'success' : ''">
+                <td ng-repeat="c in row track by $index" >
                     <span ng-show="c.title"><b>{{c.val}}</b></span>
                     <input type="text" class="min-size" ng-hide="c.title" ng-model="c.val" />
                 </td>
             </tr>
         </table>
 
-        <h4 class="text-success">Лучшее решение: {{maxRow}} ({{maxSum}})</h4>
+        <h4 class="text-success">Лучшее решение: {{minRow}} ({{minMax}})</h4>
     </div>
 
 </div>

@@ -1,3 +1,5 @@
+'use strict'
+
 var app = angular.module('myApp', ['ngSanitize']);
 app.controller('MyCtrl', function MyCtrl($scope) {
     $scope.subject = 'ТПР';
@@ -38,27 +40,45 @@ app.controller('MyCtrl', function MyCtrl($scope) {
     $scope.changeTable = function() {
 
         //Копирование массива
-        $scope.resTable = [];
+        var rt = [];
         for (var i=0; i<rows; i++) {
-            $scope.resTable[i] = [];
+            rt[i] = [];
             for (var j=0; j<columns; j++) {
-                $scope.resTable[i][j] = new Data($scope.table[i][j].val, $scope.table[i][j].title);
+                rt[i][j] = new Data($scope.table[i][j].val, $scope.table[i][j].title);
             }
         }
 
+        //Подсчет промежуточных результатов
         for (j=1; j<columns; j++) {
             //Поиск макс. по столбцам
             var maxRow = 1;
             for (i=1; i<rows; i++) {
-                if ($scope.resTable[i][j].val > $scope.resTable[maxRow][j].val) maxRow = i;
+                if (rt[i][j].val > rt[maxRow][j].val) maxRow = i;
             }
 
             //Вычитание из max значение столбца
-            var max = $scope.resTable[maxRow][j].val;
+            var max = rt[maxRow][j].val;
             for (i=1; i<rows; i++) {
-                $scope.resTable[i][j].val = max - $scope.resTable[i][j].val;
+                rt[i][j].val = max - rt[i][j].val;
             }
         }
+
+        //Подсчет мин из макс по строкам
+        rt[0][columns] = new Data('MAX', true)
+        var minRow = 1;
+        for (i=1; i<rows; i++) {
+            max = rt[i][0];
+            for (j=1; j<columns; j++) {
+                if (rt[i][j].val > max.val) max = rt[i][j];
+            }
+            rt[i][columns] = max;
+
+            if (max.val < rt[minRow][columns].val) minRow = i;
+        }
+
+        $scope.resTable = rt;
+        $scope.minRow = minRow;
+        $scope.minMax = rt[minRow][columns].val;
     };
 
     /** Заполнение значениями по умолчанию */
