@@ -66,44 +66,56 @@ app.controller('MyCtrl', function MyCtrl($scope) {
         }
 
         //Подсчет мин из макс по строкам
-        rt[0][columns] = new Data('MAX', true)
-        var minRow = 1;
+        rt[0][columns] = new Data('MAX', true);
+        var minRow = 1, maxColumn = 1;
         for (i=1; i<rows; i++) {
-            max = rt[i][1];
+            var maxCol = 1;
             for (j=1; j<columns; j++) {
-                if (rt[i][j].val > max.val) max = rt[i][j];
+                if (rt[i][j].val > rt[i][maxCol].val) {
+                    maxCol = j;
+                }
             }
-            rt[i][columns] = max;
+            rt[i][columns] = rt[i][maxCol];
 
-            if (max.val < rt[minRow][columns].val) minRow = i;
+            if (rt[i][maxCol].val < rt[minRow][columns].val) {
+                minRow = i;
+                maxColumn = maxCol;
+            }
         }
 
         //Отображение результатов на форме
         $scope.resTable = rt;
         $scope.minRow = minRow;
-        $scope.minMax = rt[minRow][columns].val;
+        $scope.minMax = $scope.table[minRow][maxColumn].val;
+        $scope.count = rt[minRow][0].val;
     };
 
     /** Заполнение значениями по умолчанию */
     $scope.stdFill = function() {
         $scope.rows = 4;
         $scope.columns = 4;
+        $scope.rowsName = 'рабочих';
+        $scope.columnsName = 'станки';
+        $scope.valueSum = 'прибылью';
+
         $scope.changeParams();
         loadData([
-            50,100,180,250,
-            80,70,80,230,
-            40,180,120,210,
-            300,220,150,150
+            'x', 40, 30, 20, 10,
+            5, 50,100,180,250,
+            4, 80,70,80,230,
+            3, 40,180,120,210,
+            2, 300,220,150,150
         ]);
         $scope.changeTable();
     };
 
     /** Загрузка данных в таблицу */
     function loadData(data) {
-        for (var i=1; i<rows; i++) {
-            for (var j=1; j<columns; j++) {
-                var val = data[(i-1)*(columns-1)+(j-1)];
-                $scope.table[i][j] = new Data(val, false);
+        for (var i=0; i<rows; i++) {
+            for (var j=0; j<columns; j++) {
+                var val = data[(i)*(columns)+(j)];
+                var title = i == 0 || j == 0;
+                $scope.table[i][j] = new Data(val, title);
             }
         }
     }

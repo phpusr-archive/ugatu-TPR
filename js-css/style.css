@@ -2,9 +2,11 @@ div.content {
     margin-left: 20px;
 }
 
+#labels input {
+    height: 30px;
+}
 #labels input[type=number] {
     width: 50px;
-    height: 30px;
 }
 
 div.my-table table {
@@ -20,6 +22,10 @@ input.min-size {
     width: 80px;
     height: 30px;
     text-align: center;
+}
+
+td.title input {
+    font-weight: bold;
 }
 
 /* without Bootstrap */
