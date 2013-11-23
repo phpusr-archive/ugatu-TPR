@@ -36,7 +36,6 @@
                 <input type="text" ng-model="columnsName" />
             </label>
         </div>
-        </div>
         <div>
             <label>
                 <span class="lead">Значение суммы: </span>
@@ -49,33 +48,32 @@
 
     <!--Таблица для заполнения-->
     <div class="my-table">
-        <div class="table table-striped table-hover table-bordered">
-            <table class="table table-striped table-hover table-bordered">
-                <tr ng-repeat="row in table" ng-class="$index == minRow ? 'success' : ''">
-                    <td ng-repeat="c in row" ng-class="c.title ? 'title' : ''">
-                        <input type="text" class="min-size" ng-model="c.val" />
-                    </td>
-                </tr>
-            </table>
+        <table class="table table-striped table-hover table-bordered">
+            <tr ng-repeat="row in table" ng-class="$index == minRow ? 'success' : ''">
+                <td ng-repeat="c in row" ng-class="c.title ? 'title' : ''">
+                    <input type="text" class="min-size" ng-model="c.val" />
+                </td>
+            </tr>
+        </table>
 
-            <div><button class="btn" ng-click="changeTable()">Подсчет</button></div>
-            <div><button class="btn" ng-click="stdFill()">Сброс</button></div>
-        </div>
+        <div><button class="btn" ng-click="changeTable()">Подсчет</button></div>
+        <div><button class="btn" ng-click="stdFill()">Сброс</button></div>
+    </div>
 
-        <!--Таблица с результатами-->
-        <div class="my-table">
-            <h2>Результаты</h2>
-            <table class="table table-striped table-hover table-bordered">
-                <tr ng-repeat="row in resTable" ng-class="$index == minRow ? 'success' : ''">
-                    <td ng-repeat="c in row track by $index" >
-                        <span ng-show="c.title"><b>{{c.val}}</b></span>
-                        <span ng-hide="c.title">{{c.val}}</span>
-                    </td>
-                </tr>
-            </table>
+    <!--Таблица с результатами-->
+    <div class="my-table">
+        <h2>Результаты</h2>
+        <table class="table table-striped table-hover table-bordered">
+            <tr ng-repeat="row in resTable" ng-class="$index == minRow ? 'success' : ''">
+                <td ng-repeat="c in row track by $index" >
+                    <span ng-show="c.title"><b>{{c.val}}</b></span>
+                    <span ng-hide="c.title">{{c.val}}</span>
+                </td>
+            </tr>
+        </table>
 
-            <h4 class="text-success">Оптимальным является решение с количеством {{rowsName}}: <u>{{countR}}</u>, количеством {{columnsName}}: <u>{{countC}}</u> и {{valueSum}}: <u>{{minMax}}</u> .</h4>
-        </div>
+        <h4 class="text-success">Оптимальным является решение с количеством {{rowsName}}: <u>{{countR}}</u>, количеством {{columnsName}}: <u>{{countC}}</u> и {{valueSum}}: <u>{{minMax}}</u> .</h4>
+    </div>
 
 </div>
 </body>
