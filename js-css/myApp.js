@@ -3,7 +3,7 @@
 var app = angular.module('myApp', ['ngSanitize']);
 app.controller('MyCtrl', function MyCtrl($scope) {
     $scope.subject = 'ТПР';
-    $scope.lab = 'Лаба 2 (Критерий Сэвиджа)';
+    $scope.lab = '(Критерий Сэвиджа)';
     var rows = 0, columns = 0;
 
     /** Срабатывает при изменении строк и столбцов */

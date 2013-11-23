@@ -53,12 +53,13 @@
             <table class="table table-striped table-hover table-bordered">
                 <tr ng-repeat="row in table" ng-class="$index == minRow ? 'success' : ''">
                     <td ng-repeat="c in row" ng-class="c.title ? 'title' : ''">
-                        <input type="text" class="min-size" ng-model="c.val" ng-change="changeTable()" />
+                        <input type="text" class="min-size" ng-model="c.val" />
                     </td>
                 </tr>
             </table>
 
-            <div><button class="btn" ng-click="stdFill()">Сбросить</button></div>
+            <div><button class="btn" ng-click="changeTable()">Подсчет</button></div>
+            <div><button class="btn" ng-click="stdFill()">Сброс</button></div>
         </div>
 
         <!--Таблица с результатами-->
