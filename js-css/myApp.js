@@ -64,10 +64,10 @@ app.controller('MyCtrl', function MyCtrl($scope) {
                 rt[i][j].val = max - rt[i][j].val;
             }
         }
-
         //Подсчет мин из макс по строкам
         rt[0][columns] = new Data('MAX', true);
         var minRow = 1, maxColumn = 1;
+        var firstTime = true;
         for (i=1; i<rows; i++) {
             var maxCol = 1;
             for (j=1; j<columns; j++) {
@@ -77,7 +77,8 @@ app.controller('MyCtrl', function MyCtrl($scope) {
             }
             rt[i][columns] = rt[i][maxCol];
 
-            if (rt[i][maxCol].val < rt[minRow][columns].val) {
+            if (firstTime || rt[i][maxCol].val < rt[minRow][maxColumn].val) {
+                firstTime = false;
                 minRow = i;
                 maxColumn = maxCol;
             }
@@ -87,7 +88,10 @@ app.controller('MyCtrl', function MyCtrl($scope) {
         $scope.resTable = rt;
         $scope.minRow = minRow;
         $scope.minMax = $scope.table[minRow][maxColumn].val;
-        $scope.count = rt[minRow][0].val;
+        //Количество рабочих
+        $scope.countR = rt[minRow][0].val;
+        //Количество станков
+        $scope.countC = rt[0][maxColumn].val;
     };
 
     /** Заполнение значениями по умолчанию */
@@ -95,7 +99,7 @@ app.controller('MyCtrl', function MyCtrl($scope) {
         $scope.rows = 4;
         $scope.columns = 4;
         $scope.rowsName = 'рабочих';
-        $scope.columnsName = 'станки';
+        $scope.columnsName = 'станков';
         $scope.valueSum = 'прибылью';
 
         $scope.changeParams();
