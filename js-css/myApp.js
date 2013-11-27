@@ -96,7 +96,7 @@ app.controller('MyCtrl', function MyCtrl($scope) {
     };
 
     /** Заполнение значениями по умолчанию */
-    $scope.stdFill = function() {
+    $scope.stdFill1 = function() {
         $scope.rows = 4;
         $scope.columns = 4;
         $scope.rowsName = 'рабочих';
@@ -142,7 +142,7 @@ app.controller('MyCtrl', function MyCtrl($scope) {
     }
 
     //Начальная инициализация
-    $scope.stdFill();
+    $scope.stdFill1();
 });
 
 /** Структура для хранения данных ячейки */
