@@ -46,7 +46,8 @@ app.controller('MyCtrl', function MyCtrl($scope) {
         for (var i=0; i<rows; i++) {
             rt[i] = [];
             for (var j=0; j<columns; j++) {
-                rt[i][j] = new Data($scope.table[i][j].val, $scope.table[i][j].title);
+                var val = i==0 || j==0 ? $scope.table[i][j].val : parseInt($scope.table[i][j].val);
+                rt[i][j] = new Data(val, $scope.table[i][j].title);
             }
         }
 
@@ -109,6 +110,22 @@ app.controller('MyCtrl', function MyCtrl($scope) {
             4, 80,70,80,230,
             3, 40,180,120,210,
             2, 300,220,150,150
+        ]);
+        $scope.changeTable();
+    };
+    $scope.stdFill2 = function() {
+        $scope.rows = 3;
+        $scope.columns = 3;
+        $scope.rowsName = 'рабочих';
+        $scope.columnsName = 'станков';
+        $scope.valueSum = 'прибылью';
+
+        $scope.changeParams();
+        loadData([
+            'x', 40, 30, 20,
+            5, 7,8,96,
+            4, 65,78,7,
+            3, 5,7,9
         ]);
         $scope.changeTable();
     };
