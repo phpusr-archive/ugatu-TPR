@@ -12,12 +12,17 @@
 
     <title>{{subject}} {{lab}}</title>
 </head>
-<body>
-<div class="content">
+<body background="img/fon.jpg">
+<p align="center" style="font-size:14px;">группа ПРО301в Хабутдинов Р.А.</p>
+
+<table width="100%" border="1px" cellspacing="0" cellpadding="0">
+  <tr align="center">
+    <td><div class="content">
 
     <div class="page-header">
 	    <h1>{{subject}} <small>{{lab}}</small></h1>
-        <h3><a href="http://math.semestr.ru/games/stat.php" target="_blank">Проверка</a></h3>
+		
+        
     </div>
 
     <!--Форма ввода строк и столбцов-->
@@ -44,7 +49,7 @@
         </div>
     </div>
 
-    <hr/>
+    <hr align="center" width="500px"/>
 
     <!--Таблица для заполнения-->
     <div class="my-table">
@@ -59,10 +64,16 @@
         <div><button class="btn" ng-click="changeTable()">Подсчет</button></div>
         <div><button class="btn" ng-click="stdFill()">Сброс</button></div>
     </div>
+	
+</div></td>
 
-    <!--Таблица с результатами-->
+
+
+
+    <td> <!--Таблица с результатами-->
     <div class="my-table">
         <h2>Результаты</h2>
+		<hr align="center" width="500px"/>
         <table class="table table-striped table-hover table-bordered">
             <tr ng-repeat="row in resTable" ng-class="$index == minRow ? 'success' : ''">
                 <td ng-repeat="c in row track by $index" >
@@ -72,8 +83,17 @@
             </tr>
         </table>
 
-        <h4 class="text-success">Оптимальным является решение с количеством {{rowsName}}: <u>{{countR}}</u>, количеством {{columnsName}}: <u>{{countC}}</u> и {{valueSum}}: <u>{{minMax}}</u> .</h4>
-    </div>
+        <h4 class="text-success">Оптимальным является решение с количеством {{rowsName}}: <u>{{countR}}</u>, <br>количеством {{columnsName}}: <u>{{countC}}</u> и {{valueSum}}: <u>{{minMax}}</u> .</h4>
+    </div></td>
+  </tr>
+</table>
+
+
+
+
+   
+	
+	<h3 align="center"><a href="http://math.semestr.ru/games/stat.php" target="_blank">Проверка</a></h3>
 
 </div>
 </body>

@@ -1,3 +1,10 @@
+h1,h2,h3,h4,p, span {
+font-family:Verdana, Arial, Helvetica, sans-serif;
+color:#333333;
+}
+a {
+text-decoration:none;
+}
 div.content {
     margin-left: 20px;
 }
